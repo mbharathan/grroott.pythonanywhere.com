@@ -1,3 +1,5 @@
+########################## Getting Started ##########################
+
 --> django-admin: This command will give the other available commands.
 --> To create a new project: django-admin startproject django-project
 This will create below folders/files,
@@ -9,4 +11,15 @@ wsgi.py		==> Web application and web server communicates through this file.
 asgi.py		==> 
 --> To start the server, python manage.py runserver. The server will be up & application will be available in 127.0.0.1:8000 or localhost:8000.
 --> By default, the admin page is configured in django & can be accessed through localhost:8000/admin. But there is no default credentials & it should be configured.
+
+########################## Applications and Routes ##########################
+
+--> To create a app: python manage.py startapp blog
+--> urls.py file needs to be created within the app folder (This will not be created by default). 
+--> To create the simple web page, the logic is,
+User --> project url --> app url -->views.py
+--> In views.py file, the HttpResponse has to be imported from dango.http & the function should accept request & return http response.
+--> In app urls.py file,  1)url as string 2) module.function_name it has to be referred 3) any unique name
+--> In project urls.py file, the include function has to be imported from django.urls & the url matching shoulg go to include function (app url in string)
+--> It is always better to use trailing slash in urls.
 
