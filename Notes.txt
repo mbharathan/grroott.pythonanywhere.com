@@ -1,0 +1,12 @@
+--> django-admin: This command will give the other available commands.
+--> To create a new project: django-admin startproject django-project
+This will create below folders/files,
+manage.py	==> This is how our web applicaion can be used through command line interface.
+__init__.py	==> This is the empty file, used for python identifying it as a python package.
+settings.py	==> This file contains all the config settings such as apps, debug, DB,security key, etc.
+urls.py		==> This file contains the url mapping of the website.
+wsgi.py		==> Web application and web server communicates through this file.
+asgi.py		==> 
+--> To start the server, python manage.py runserver. The server will be up & application will be available in 127.0.0.1:8000 or localhost:8000.
+--> By default, the admin page is configured in django & can be accessed through localhost:8000/admin. But there is no default credentials & it should be configured.
+
