@@ -28,5 +28,11 @@ User --> project url --> app url -->views.py
 --> Tempates folder should be created under applicaion. Inside the templates folder, another folder should be created with app name.Below are the Django convention for templates structure.
 blog -> templates -> blog -> html files
 --> In order to Django recognises templates & Databases, the Class in apps.py file should be pointed in installed apps section in settings.py file. Format: 'app_name.file_name(apps).class_name_in_apps.py_file'
---> To map templates folder with views.py file, render function can be used. render function returns same HttpResponse by taking 3 arguments such as request, 'app_name_in_templates_folder/html_file' and
+--> To map templates folder with views.py file, render function can be used. render function returns same HttpResponse by taking 3 arguments such as request, 'app_name_in_templates_folder/html_file' and name of the data dictionary.
+--> Create a tempory data by creating a list of dictionaries and also, create a dictionary within function & it contains the value as the variable of the temp data. Once this is set, the key name will be accebile with the data insite templates folder .
+--> Templating engine Django uses is Jinger2. To use any loops, 
+{% for i in x %}
+{{ i }}
+{% endfor %}
+The appropriate tags can be given.
 
