@@ -40,4 +40,11 @@ The appropriate tags can be given.
 --> To point the css files in base.html, create a code block on top with load statis keyword. Then, in a link tag, open another code block, {% static "path" %}
 --> To use the dynamic urls in the headers, in a code block, pass the name that was created in function views.py file. {% url 'blog-home' %}
 
+########################## Admin page ##########################
+
+--> python manage.py makemigration & python manage.py migrate
+--> To create admin user: python manage.py createsuperuser 
+--> Django comes with inbuilt admin page.
+
+
 
