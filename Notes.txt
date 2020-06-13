@@ -35,4 +35,9 @@ blog -> templates -> blog -> html files
 {{ i }}
 {% endfor %}
 The appropriate tags can be given.
+--> To use bootstrap, use CDN links in base.html so that it can take effect on complete website.
+--> To use css & JS files, create the folder in blog folder, then create a folder with the name of the app inside the static folder, then create files inside.
+--> To point the css files in base.html, create a code block on top with load statis keyword. Then, in a link tag, open another code block, {% static "path" %}
+--> To use the dynamic urls in the headers, in a code block, pass the name that was created in function views.py file. {% url 'blog-home' %}
+
 
