@@ -77,4 +77,9 @@ admin.site.register(Post)
 To map in urls.py, import views from users directly & use it.
 path('register/', views.register, name='register') Note: Now no need to create urls.py in app folder.
 --> To alter it properly form.as_p to wrap it in a paragraph tag. 
-
+--> Use {% csrf_token %} for security purpose.
+--> To make the website to take our input data, instead of just instantiating the "UserCreationForm", pass request.POST to it.
+--> To check whether the inputs are valid, nned to verify them. If it is success, to display a success message, import messages from django.contrib.
+--> To redirect the website after signing up, use redirect function from shortcut module.
+--> TO save all the changes to DB, use form.save().
+--> To display the alert, need to dynamically configure in base.html as well.
