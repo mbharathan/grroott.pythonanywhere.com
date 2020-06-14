@@ -83,3 +83,10 @@ path('register/', views.register, name='register') Note: Now no need to create u
 --> To redirect the website after signing up, use redirect function from shortcut module.
 --> TO save all the changes to DB, use form.save().
 --> To display the alert, need to dynamically configure in base.html as well.
+--> To add extra fields in registration page (which is not available in "UserCreationForm" by default), need to create new form which inherits from "UserCreationForm".
+--> Create a file in users folder (forms.py) & create a class whice inherits from "UserCreationForm".
+--> Create a class Meta inside which has two fields. 1) models - which model is going to affected? 2)fields - list of all fileds in register page in order.
+--> Now, in views.py, instead of "UserCreationForm", use new form that has been created.
+--> To design registration page better, use Crispy forms. Pip install django-crispy-forms.
+--> Need to configure it in settings.py file in installed app section - "crispy_forms" & at the bottom - "CRISPY_TEMPLATE_PACK = 'bootstrap4'"
+--> In register.html file, load it by {% load crispy_forms_tags %} & instead of as_p, use | crispy to take effect. This will take care of better styling, muted text & better alerts.
