@@ -67,5 +67,14 @@ user.post_set.all() --> This will list all the post written by User.
 --> To add Post details in admin page, need to register in admin.py file in app folder. Import Post clσss from models file & TO register,
 admin.site.register(Post)
 
-
+########################## User Registration ##########################
+--> It is better to separate user regestration into separate app. Django has a built in form "UserCreationForm". It can be imported from django.contrib.auth.form.
+--> 1) Create a new app 
+2) Register it in settings.py
+3) Import UserCreationForm & create a object & return render with the third parameter as the object.
+4) Create a template/app folder & create html file.
+5) Map the views file in project urls.py.
+To map in urls.py, import views from users directly & use it.
+path('register/', views.register, name='register') Note: Now no need to create urls.py in app folder.
+--> To alter it properly form.as_p to wrap it in a paragraph tag. 
 
