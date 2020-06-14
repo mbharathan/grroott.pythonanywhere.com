@@ -63,6 +63,9 @@ To make this effect, run post_1.save() Note: This is similar to Commit key word 
 --> To fetch all post written by user, user = User.objects.filter(username='Gokul').first()
 user.post_set.all() --> This will list all the post written by User.
 --> It is possible to create a post directly from here by user.post_set.create(title='Blog 3', content='Test content for Blog 3!'). NO need to run .save method for this.
+--> To use data from DB instead of temporary data, import the Post class from models.py firl in views.py & pass the query set inplace of value in dictionary.Then the temporary data can be removed.
+--> To add Post details in admin page, need to register in admin.py file in app folder. Import Post clσss from models file & TO register,
+admin.site.register(Post)
 
 
 
