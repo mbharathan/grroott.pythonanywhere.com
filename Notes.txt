@@ -54,5 +54,15 @@ The appropriate tags can be given.
 --> Few crieteria are CharField, TextField & DateTimeField and Foreign key can be set by mapping with other table.
 --> After running python manage.py makemigrations, "blog\migrations\0001_initial.py" one file will be created similar to this.
 --> To view SQL query corresponding to this class, use "python manage.py sqlmigrate blog 0001". Then, python manage.py migrate should be run.
+--> To open DB shell, python manage.py shell & import both User and Post.
+--> To view existing users, User.objects.all() -> This will return a query set. Other methods instead of all() are first() & last(). Also. filter(username='test') can be used. Also, it is possible to get data by column names like User.objects.set(id=1).
+--> TO create a post through DB shell,
+post_1 = Post(title='Blog 1', content='Test content for Blog 1!', author=user)
+To make this effect, run post_1.save() Note: This is similar to Commit key word in SQL after running update query. 
+--> If Post.objects.all() was run, it retuns with object. To make it configure properly, use __str__ method in models.py file. 
+--> To fetch all post written by user, user = User.objects.filter(username='Gokul').first()
+user.post_set.all() --> This will list all the post written by User.
+--> It is possible to create a post directly from here by user.post_set.create(title='Blog 3', content='Test content for Blog 3!'). NO need to run .save method for this.
+
 
 
