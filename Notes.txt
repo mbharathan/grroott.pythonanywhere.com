@@ -37,7 +37,7 @@ blog -> templates -> blog -> html files
 The appropriate tags can be given.
 --> To use bootstrap, use CDN links in base.html so that it can take effect on complete website.
 --> To use css & JS files, create the folder in blog folder, then create a folder with the name of the app inside the static folder, then create files inside.
---> To point the css files in base.html, create a code block on top with load statis keyword. Then, in a link tag, open another code block, {% static "path" %}
+--> To point the css files in base.html, create a code block on top with load static keyword. Then, in a link tag, open another code block, {% static "path" %}
 --> To use the dynamic urls in the headers, in a code block, pass the name that was created in function views.py file. {% url 'blog-home' %}
 
 ########################## Admin page ##########################
@@ -46,5 +46,13 @@ The appropriate tags can be given.
 --> To create admin user: python manage.py createsuperuser 
 --> Django comes with inbuilt admin page.
 
+########################## Database and Migrations ##########################
+
+--> Django contains inbuilt ORM (Object Relational Mapper) whice means we no need to write a sql query separaely (will be done automatically).
+--> In models.py file in app folder, Each class created will be a table in DB. note: User table is created by default & import it from django.contrib.auth.models
+--> Crate a class which takes models.Model as a input parameter & each variable assigned will be a column in DB table.
+--> Few crieteria are CharField, TextField & DateTimeField and Foreign key can be set by mapping with other table.
+--> After running python manage.py makemigrations, "blog\migrations\0001_initial.py" one file will be created similar to this.
+--> To view SQL query corresponding to this class, use "python manage.py sqlmigrate blog 0001". Then, python manage.py migrate should be run.
 
 
