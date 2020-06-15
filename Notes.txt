@@ -90,3 +90,10 @@ path('register/', views.register, name='register') Note: Now no need to create u
 --> To design registration page better, use Crispy forms. Pip install django-crispy-forms.
 --> Need to configure it in settings.py file in installed app section - "crispy_forms" & at the bottom - "CRISPY_TEMPLATE_PACK = 'bootstrap4'"
 --> In register.html file, load it by {% load crispy_forms_tags %} & instead of as_p, use | crispy to take effect. This will take care of better styling, muted text & better alerts.
+
+########################## Login and Logout System ##########################
+
+--> Django provides Login & Logout views by default but it does not provide template by default. So no need to create views for login & logout, only need to import in projects urls.py. Both are almost same.
+--> Import views from django.contrib.auth.
+--> LoginView & LogoutView are class based views instead of our previous funcction based views. BY default, it will look for the templates in "registration/login.html", to change them to our template location,
+path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login')
