@@ -104,3 +104,11 @@ path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), n
 --> To show only the personal information only after the user is logged in (Most of the websites are using this feature), Django has the inbuilt decorators for function based views.
 --> Import login_required from django.contrib.auth.decorators & use it for profile function. For Class based views, it will be differ.
 --> By default, Django looks for different url, to configure for login url, add LOGIN_URL = 'login' in project settings.py file.
+
+######################## User Profile and Picture ############################
+
+--> To elaborate the profile page, create a class in models.py file & establish a One to One relationship between user & profile.
+--> ImageField cab be used to display the image. __str__ method can be configured to show what we need to show.
+--> Pillow library is reqired to work with image.
+--> Run python manage.py makemigrations & python manage.py migrate files to take effect.
+--> To add profile into the admin page, register it in admin.py file using admin.site.register(Profile).
