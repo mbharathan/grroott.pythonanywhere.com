@@ -118,3 +118,7 @@ path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), n
 --> Now, folder called media is created in base directory & pics are stored here.
 --> To display the personal info & profile pics in profile page, modify the profile.html in templates folder. TO view the image, there are separate ways for Production & developement environment.
 --> Refer the documentation & modify the project urls.py file.
+--> For the profile which doesn't have the profile pic, it will look inside the media folder. If we drop a pic named default.jpg, it will be picked automatically.
+--> To create a profile automatically when new user was created, use Django signals.
+--> create signals.py file in user app folder & do the necessary imports & functions according to django documentation.
+--> add this signals in apps.py file according to documentation.
