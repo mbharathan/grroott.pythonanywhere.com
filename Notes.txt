@@ -99,4 +99,8 @@ path('register/', views.register, name='register') Note: Now no need to create u
 path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login')
 --> To redirect to any url after login, add LOGIN_REDIRECT_URL = 'blog-home' in settings.py.
 --> Write the content to be displayed in logout.html file.
---> To display the Login/logout button based on whether user is logged in or not, use user.authenticated method
+--> To display the Login/logout button based on whether user is logged in or not, use user.authenticated method.
+--> To add profile page, just create a profile function in views.py file, configure it in project urls.py file & create a html file in template folder.
+--> To show only the personal information only after the user is logged in (Most of the websites are using this feature), Django has the inbuilt decorators for function based views.
+--> Import login_required from django.contrib.auth.decorators & use it for profile function. For Class based views, it will be differ.
+--> By default, Django looks for different url, to configure for login url, add LOGIN_URL = 'login' in project settings.py file.
