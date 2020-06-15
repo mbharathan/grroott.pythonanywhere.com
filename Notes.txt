@@ -97,3 +97,6 @@ path('register/', views.register, name='register') Note: Now no need to create u
 --> Import views from django.contrib.auth.
 --> LoginView & LogoutView are class based views instead of our previous funcction based views. BY default, it will look for the templates in "registration/login.html", to change them to our template location,
 path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login')
+--> To redirect to any url after login, add LOGIN_REDIRECT_URL = 'blog-home' in settings.py.
+--> Write the content to be displayed in logout.html file.
+--> To display the Login/logout button based on whether user is logged in or not, use user.authenticated method
