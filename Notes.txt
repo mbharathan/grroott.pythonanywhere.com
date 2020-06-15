@@ -1,3 +1,4 @@
+
 ########################## Getting Started ##########################
 
 --> django-admin: This command will give the other available commands.
@@ -122,3 +123,11 @@ path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), n
 --> To create a profile automatically when new user was created, use Django signals.
 --> create signals.py file in user app folder & do the necessary imports & functions according to django documentation.
 --> add this signals in apps.py file according to documentation.
+
+############################  Update User Profile  #################################
+
+--> To edit the profile informations, need to create respective class in forms.py file.
+--> Need to create 2 classes: UserUpdateForm for editing user info & ProfileUpdateForm for updating profile pic.
+--> In views.py file, instantiate the forms created in forms.py file & pass it to the render function.
+--> Update in html files in templates folder. Need to put both forms separately so that it will apperar as single to user.
+--> Add enctype at the top to better handling of images.
