@@ -132,3 +132,5 @@ path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), n
 --> Update in html files in templates folder. Need to put both forms separately so that it will apperar as single to user.
 --> Add enctype at the top to better handling of images.
 --> To populate current detail in profile update page, check if it is a valid POST request & pass instance=request.user. Also, Flash the sucess notification & redirect it to the current page. All logic should be written in views.py file.
+--> To reduce the size of image user's uplading, we need to override the save method in models.py file.
+--> To display the user profile pic in home page, write the logic in home.html in blog app.
