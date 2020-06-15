@@ -112,3 +112,9 @@ path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), n
 --> Pillow library is reqired to work with image.
 --> Run python manage.py makemigrations & python manage.py migrate files to take effect.
 --> To add profile into the admin page, register it in admin.py file using admin.site.register(Profile).
+--> A folder called profile_pics is created in root directory of the project.
+--> To change this folder from root directory of the project, few configurations has to be done in root directory of the website.
+--> MEDIA_ROOT should be added as where the profile should be stored & MEDIA_URL should be path it can be accessed in application.
+--> Now, folder called media is created in base directory & pics are stored here.
+--> To display the personal info & profile pics in profile page, modify the profile.html in templates folder. TO view the image, there are separate ways for Production & developement environment.
+--> Refer the documentation & modify the project urls.py file.
