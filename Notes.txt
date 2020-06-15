@@ -131,3 +131,4 @@ path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), n
 --> In views.py file, instantiate the forms created in forms.py file & pass it to the render function.
 --> Update in html files in templates folder. Need to put both forms separately so that it will apperar as single to user.
 --> Add enctype at the top to better handling of images.
+--> To populate current detail in profile update page, check if it is a valid POST request & pass instance=request.user. Also, Flash the sucess notification & redirect it to the current page. All logic should be written in views.py file.
