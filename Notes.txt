@@ -146,3 +146,8 @@ path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), n
 --> This still don't work yet, since Class based views looks for template with specific naming convention, to change it to look what we have created, use template_name to pass the path to our template.
 --> Now, the class based view pass the content to template with diffrent variabe name, to set it to our content , pass context_object_name as the content.
 --> To make all the blog contents to be shown in decending order, use ordering attribute. 
+--> Lets create DetailView as per django convention.
+--> Import DetailView & create a class that inherits from DetalView & create a instance model that mas Post.
+--> In project urls.py, use <pk> attribute, so that it redirects to that particular post.
+--> To create a html file in template folder. By default, Django looks for html files at  <app>/<model>_<viewtype>.html.
+--> In html file, as per django convention, it stores value in object keyword.
