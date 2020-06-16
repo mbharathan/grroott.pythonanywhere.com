@@ -158,3 +158,4 @@ path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), n
 4) use forms to display all the fields.
 5) To make the author as current logged In user & over rides the class before it submits, create a function in PostCreateView class & write the logic.
 6) In class based views, use reverse instead of redirect function. In model.py file, create get_absolute_url function that returns reverse with the path to be redirected as string.
+--> To create the post only after logging in, use LoginRequiredMixin that should ne imported from django.contrib.auth.mixins. In function based views, this can be  done by usage of decorators.

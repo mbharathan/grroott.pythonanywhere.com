@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.views.generic import ListView, DetailView, CreateView
 from .models import Post
@@ -10,7 +11,7 @@ def home(request):
 	}
 	return render(request, 'blog/home.html', context)
 
-class PostListView(ListView):
+class PostListView(LoginRequiredMixin, ListView):
 	model = Post
 	template_name = 'blog/home.html'
 	context_object_name = 'posts'
@@ -20,7 +21,7 @@ class PostDetailView(DetailView):
 	model = Post
 		
 
-class PostCreateView(CreateView):
+class PostCreateView(LoginRequiredMixin, CreateView):
 	model = Post
 	fields = ['title', 'content']
 
