@@ -181,3 +181,8 @@ path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), n
 --> By default, class based views contains paginators. We can use it by setting the parameter paginate_by in our class.
 --> The above will display only one page & there is no buttons available to navigate to other pages. one way is editing url by /?page=5.
 --> To make the buttons available in home page, write the logic in home.html file. 
+--> To list all post by a author, create one view similar to PostListView.
+--> To query the user's post , use get_queryset function & write the logic.
+--> Also, use get_object_or_404 to return 404 error if user is no found & modify accordinglr in urls py file.
+--> Write front end logic in html file inside template directory.
+
