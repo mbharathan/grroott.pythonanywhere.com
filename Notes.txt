@@ -179,4 +179,5 @@ path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), n
 --> pi.object_list will print all the content of that page.
 --> To check whether the specific page has previous or next pages, use p1.has_previous() & p1.has_next() and to get next page number, use p1.next_page_number().
 --> By default, class based views contains paginators. We can use it by setting the parameter paginate_by in our class.
-
+--> The above will display only one page & there is no buttons available to navigate to other pages. one way is editing url by /?page=5.
+--> To make the buttons available in home page, write the logic in home.html file. 
