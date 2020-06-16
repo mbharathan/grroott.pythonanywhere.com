@@ -167,3 +167,4 @@ path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), n
 2) configure it in urls.py file
 3) write the front end logic in post_confirm_delete.html file.
 4) configure the success_url in view class so that it redirects after deletion.
+--> Finally, Add the necessary buttons in the front end so tha the users will be able to perform thses actions.
