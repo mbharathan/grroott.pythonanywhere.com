@@ -156,3 +156,5 @@ path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), n
 2) Map the url in urls.py file.
 3) Create post_form.html because it will be affected by updating post a well.
 4) use forms to display all the fields.
+5) To make the author as current logged In user & over rides the class before it submits, create a function in PostCreateView class & write the logic.
+6) In class based views, use reverse instead of redirect function. In model.py file, create get_absolute_url function that returns reverse with the path to be redirected as string.
