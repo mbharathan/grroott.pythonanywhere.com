@@ -134,3 +134,15 @@ path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), n
 --> To populate current detail in profile update page, check if it is a valid POST request & pass instance=request.user. Also, Flash the sucess notification & redirect it to the current page. All logic should be written in views.py file.
 --> To reduce the size of image user's uplading, we need to override the save method in models.py file.
 --> To display the user profile pic in home page, write the logic in home.html in blog app.
+
+############################ Create, Update, and Delete Posts ########################
+
+--> Till now, we have been using Function based views, There is one more option called Function based views.
+--> Function based views offer much more inbuilt features.
+--> ListView, DetailView, UpdateView & DeleteView
+--> To use ListView in views.py instead of function based view, import django.views.generic import ListView
+--> Create a class which should inherits from ListView & set model which model to query when this view search for options.
+--> To make webpage use this class based view, in app urls.py file, use PostListView.as_type() instead of views.home. Instead of directly passing class name, use as_type().
+--> This still don't work yet, since Class based views looks for template with specific naming convention, to change it to look what we have created, use template_name to pass the path to our template.
+--> Now, the class based view pass the content to template with diffrent variabe name, to set it to our content , pass context_object_name as the content.
+--> To make all the blog contents to be shown in decending order, use ordering attribute. 
