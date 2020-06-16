@@ -162,3 +162,8 @@ path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), n
 --> To make the user to update the posts, use UpdateView. It is similar to the CreateView.
 --> To restrict theusers to update their posts only, import UserPassesTestMixin
 --> write the function that verifies whether the logged in user is the author of this post.
+--> Delete view is similar to UpdateView.
+1) Add a class in views.py file
+2) configure it in urls.py file
+3) write the front end logic in post_confirm_delete.html file.
+4) configure the success_url in view class so that it redirects after deletion.
