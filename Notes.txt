@@ -186,7 +186,9 @@ path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), n
 --> Also, use get_object_or_404 to return 404 error if user is no found & modify accordinglr in urls py file.
 --> Write front end logic in html file inside template directory.
 
-########################## Password reset by Email #################################################
+########################## Email and Password Reset #################################################
 
 --> Create a password reset directory in urls.py that imports from auth_views & create a front end page using forms in templates folder.
 --> After clicking reset button, it should be redirected to another page that is imported from PasswordResetDoneView.
+--> To configure smtp/Email settings, add few parameters in settings.py file. For email & passwords, store it in System's environemt variable and then access it using os.environ.get('key')
+--> Also, create password ret complete page that imports from PasswordResetCompleteView. 
