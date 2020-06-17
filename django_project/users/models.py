@@ -6,6 +6,7 @@ from PIL import Image
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(default='')
+    lives_in = models.CharField(max_length=30,default='')
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
 
     def __str__(self):
@@ -23,3 +24,11 @@ class Profile(models.Model):
             output_size = (300, 300)
             img.thumbnail(output_size)
             img.save(self.image.path)
+
+
+class Feedback(models.Model):
+    subject = models.CharField(max_length=100)
+    your_feedback = models.TextField()
+
+    def __str__(self):
+        return f'{self.subject}'
