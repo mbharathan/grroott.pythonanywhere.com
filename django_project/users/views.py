@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, FeedbackForm
 
 def register(request):
 	if request.method == "POST":
@@ -37,3 +37,16 @@ def profile(request):
 	}
 
 	return render(request, 'users/profile.html', context)
+
+@login_required
+def feedback(request):
+	if request.method == "POST":
+		form = FeedbackForm(request.POST)
+		if form.is_valid():
+			form.save()
+			subject = form.cleaned_data.get('subject')
+			messages.success(request, f'Thanks for your feedback. Your Feedback has been recorded!')
+			return redirect('blog-home')
+	else:	
+		form = FeedbackForm()
+	return render(request, 'users/feedback.html', {'form':form})
