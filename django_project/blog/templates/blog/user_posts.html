@@ -1,14 +1,17 @@
 {% extends "blog/base.html" %}
 {% block content %}
-
-    <div class="media media content-section">
-      <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
-      <div class="media-body">
-        <h2 class="account-heading">{{ user.username }}</h2>
-        <p class="text-secondary">{{ user.email }}</p>
-        <p class="text-secondary"><em>{{ user.profile.bio }}</em></p>
-      </div>
-    </div>
+    {% for post in posts %}
+      {% if forloop.first %}
+        <div class="media media content-section">
+          <img class="rounded-circle account-img" src="{{ post.author.profile.image.url }}">
+          <div class="media-body">
+            <h2 class="account-heading">{{ post.author }}</h2>
+            <p class="text-secondary">{{ post.author.email }}</p>
+            <p class="text-secondary"><em>{{ post.author.profile.bio }}</em></p>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
 
     <p></p>
 
