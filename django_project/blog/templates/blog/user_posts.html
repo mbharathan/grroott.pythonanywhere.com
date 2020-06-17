@@ -1,6 +1,18 @@
 {% extends "blog/base.html" %}
 {% block content %}
-    <h1 class="mb-3">Posts by {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h1>
+
+    <div class="media media content-section">
+      <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+      <div class="media-body">
+        <h2 class="account-heading">{{ user.username }}</h2>
+        <p class="text-secondary">{{ user.email }}</p>
+        <p class="text-secondary"><em>{{ user.profile.bio }}</em></p>
+      </div>
+    </div>
+
+    <p></p>
+
+    <h2 class="mb-3">Posts by {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h2>
     {% for post in posts %}
         <article class="media content-section">
           <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
