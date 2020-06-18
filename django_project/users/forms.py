@@ -23,7 +23,7 @@ class UserUpdateForm(forms.ModelForm):
 class ProfileUpdateForm(forms.ModelForm):
 	class Meta:
 		model = Profile
-		fields = ['bio','lives_in', 'image']
+		fields = ['bio', 'image']
 
 class FeedbackForm(forms.ModelForm):
 
