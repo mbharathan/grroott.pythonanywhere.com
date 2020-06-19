@@ -1,11 +1,11 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Post
+from .models import Post, Like
 
-	
+
 def home(request):
 	context = {
 	'posts' : Post.objects.all()
@@ -31,7 +31,7 @@ class UserPostListView(LoginRequiredMixin, ListView):
 
 class PostDetailView(DetailView):
 	model = Post
-		
+
 
 class PostCreateView(LoginRequiredMixin, CreateView):
 	model = Post
@@ -65,7 +65,32 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 		if self.request.user == post.author:
 			return True
 		return False
-		
+
 
 def about(request):
 	return render(request, 'blog/about.html', {'title':'About'})
+
+
+def like_post(request):
+	user = request.user
+	if request.method == 'POST':
+		post_id = request.POST.get('post_id')
+		post_obj = Post.objects.get(id=post_id)
+
+		if user in post_obj.liked.all():
+			post_obj.liked.remove(user)
+		else:
+			post_obj.liked.add(user)
+
+		like, created = Like.objects.get_or_create(user=user, post_id=post_id)
+
+		if not created:
+			if like.value == 'Like':
+				like.value = 'Unlike'
+			else:
+				like.value = 'Like'
+
+		like.save()
+	# return redirect('blog-home')
+	# return HttpResponseRedirect(request.path_info)
+	return redirect(request.META.get('HTTP_REFERER', 'blog-home'))
