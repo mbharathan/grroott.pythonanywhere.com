@@ -7,7 +7,20 @@
           <div class="media-body">
             <h2 class="account-heading">{{ post.author }}</h2>
             <p class="text-secondary">{{ post.author.email }}</p>
+            <p class="text-secondary">{{ post.author.profile.followed.all.count }} Followers</p>
             <p class="text-secondary"><em>{{ post.author.profile.bio }}</em></p>
+
+            {% if post.author.profile != user.profile %}
+            <form action="{% url 'follow-profile' %}" method="POST">
+              {% csrf_token %}
+              <input type="hidden" name="profile_id" value="{{ post.author.profile.id }}">
+              {% if user not in post.author.profile.followed.all %}
+                <button class="btn btn-outline-info mb-4" type="submit">Follow</button>
+              {% else %}
+                <button class="btn btn-info mb-4" type="submit">Following</button>
+              {% endif %}
+            </form>
+            {% endif %}
           </div>
         </div>
       {% endif %}

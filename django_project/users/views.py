@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, FeedbackForm
+from .models import Profile, Follow
 
 def register(request):
 	if request.method == "POST":
@@ -50,3 +51,28 @@ def feedback(request):
 	else:	
 		form = FeedbackForm()
 	return render(request, 'users/feedback.html', {'form':form})
+
+
+def follow_profile(request):
+	user = request.user
+	if request.method == 'POST':
+		profile_id = request.POST.get('profile_id')
+		profile_obj = Profile.objects.get(id=profile_id)
+
+		if user in profile_obj.followed.all():
+			profile_obj.followed.remove(user)
+		else:
+			profile_obj.followed.add(user)
+
+		follow, created = Follow.objects.get_or_create(user=user, profile_id=profile_id)
+
+		if not created:
+			if follow.follow_value == 'Follow':
+				follow.follow_value = 'Following'
+			else:
+				follow.follow_value = 'Follow'
+
+		follow.save()
+	# return redirect('blog-home')            
+	# return HttpResponseRedirect(request.path_info)
+	return redirect(request.META.get('HTTP_REFERER', 'profile'))
