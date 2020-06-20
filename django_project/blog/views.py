@@ -16,8 +16,11 @@ class PostListView(LoginRequiredMixin, ListView):
 	model = Post
 	template_name = 'blog/home.html'
 	context_object_name = 'posts'
-	ordering = ['-date_posted']
 	paginate_by = 5
+
+	def get_queryset(self):
+		username=self.request.user
+		return Post.objects.exclude(author=username).order_by('-date_posted')
 
 class UserPostListView(LoginRequiredMixin, ListView):
 	model = Post
