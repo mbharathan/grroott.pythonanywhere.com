@@ -3,6 +3,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, FeedbackForm
 from .models import Profile, Follow
+from blog.models import Post
+from django.contrib.auth.models import User
 
 def register(request):
 	if request.method == "POST":
@@ -17,7 +19,7 @@ def register(request):
 	return render(request, 'users/register.html', {'form':form})
 
 @login_required
-def profile(request):
+def edit_profile(request):
 	if request.method == "POST":
 		u_form = UserUpdateForm(request.POST, instance=request.user)
 		p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
@@ -26,7 +28,7 @@ def profile(request):
 			u_form.save()
 			p_form.save()
 			messages.success(request, f'Your account has been updated sucessfully!')
-			return redirect('profile')
+			return redirect('user_profile')
 	else:
 		u_form = UserUpdateForm(instance=request.user)
 		p_form = ProfileUpdateForm(instance=request.user.profile)
@@ -37,7 +39,15 @@ def profile(request):
 		'p_form' : p_form
 	}
 
-	return render(request, 'users/profile.html', context)
+	return render(request, 'users/edit_profile.html', context)
+
+@login_required
+def user_profile(request):
+	context = {
+	'posts' : Post.objects.filter(author=request.user).order_by('-date_posted')
+	}
+	return render(request, 'users/user_profile.html', context)
+
 
 @login_required
 def feedback(request):
@@ -73,6 +83,4 @@ def follow_profile(request):
 				follow.follow_value = 'Follow'
 
 		follow.save()
-	# return redirect('blog-home')            
-	# return HttpResponseRedirect(request.path_info)
 	return redirect(request.META.get('HTTP_REFERER', 'profile'))
