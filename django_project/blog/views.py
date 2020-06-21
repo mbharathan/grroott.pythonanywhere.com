@@ -1,11 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Post, Like
-
-
+from django.http import HttpResponseRedirect
+from django.contrib import messages
+	
 def home(request):
 	context = {
 	'posts' : Post.objects.all()
@@ -16,6 +17,7 @@ class PostListView(LoginRequiredMixin, ListView):
 	model = Post
 	template_name = 'blog/home.html'
 	context_object_name = 'posts'
+	# ordering = ['-date_posted']
 	paginate_by = 5
 
 	def get_queryset(self):
@@ -34,7 +36,7 @@ class UserPostListView(LoginRequiredMixin, ListView):
 
 class PostDetailView(DetailView):
 	model = Post
-
+		
 
 class PostCreateView(LoginRequiredMixin, CreateView):
 	model = Post
@@ -61,7 +63,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 	model = Post
-	success_url = '/'
+	success_url = '/user-profile/'
 
 	def test_func(self):
 		post = self.get_object()
@@ -69,6 +71,11 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 			return True
 		return False
 
+	def delete(self, request, *args, **kwargs):
+	    response = super().delete(request, *args, **kwargs)
+	    messages.success(self.request, 'Your post has been deleted sucessfully!')
+	    return response
+		
 
 def about(request):
 	return render(request, 'blog/about.html', {'title':'About'})
@@ -94,6 +101,6 @@ def like_post(request):
 				like.value = 'Like'
 
 		like.save()
-	# return redirect('blog-home')
+	# return redirect('blog-home')            
 	# return HttpResponseRedirect(request.path_info)
 	return redirect(request.META.get('HTTP_REFERER', 'blog-home'))
