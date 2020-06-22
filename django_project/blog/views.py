@@ -35,7 +35,7 @@ class UserPostListView(LoginRequiredMixin, ListView):
 		user = get_object_or_404(User, username=self.kwargs.get('username'))
 		return Post.objects.filter(author=user).order_by('-date_posted')
 
-class PostDetailView(DetailView):
+class PostDetailView(LoginRequiredMixin, DetailView):
 	model = Post
 		
 
@@ -103,6 +103,4 @@ def like_post(request):
 				like.value = 'Like'
 
 		like.save()
-	# return redirect('blog-home')            
-	# return HttpResponseRedirect(request.path_info)
 	return redirect(request.META.get('HTTP_REFERER', 'blog-home'))

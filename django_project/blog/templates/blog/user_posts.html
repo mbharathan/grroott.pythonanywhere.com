@@ -7,7 +7,21 @@
           <div class="media-body">
             <h2 class="account-heading">{{ post.author }}</h2>
             <p class="text-secondary">{{ post.author.email }}</p>
-            <p class="text-secondary">{{ post.author.profile.followed.all.count }} Followers</p>
+
+            {% if post.author.profile.followed.all.count == 0  %}
+              <p class="text-secondary"> <a href="#">
+              {{ post.author.profile.followed.all.count }} Follower
+              </a></p>
+            {% elif post.author.profile.followed.all.count == 1 %}
+              <p class="text-secondary"> <a href="{% url 'followers' post.author %}">
+              {{ post.author.profile.followed.all.count }} Follower
+              </a></p>
+            {% else %}
+              <p class="text-secondary"> <a href="{% url 'followers' post.author %}">
+              {{ post.author.profile.followed.all.count }} Followers
+              </a></p>
+            {% endif %}
+
             <p class="text-secondary"><em>{{ post.author.profile.bio }}</em></p>
 
             {% if post.author.profile != user.profile %}
@@ -21,8 +35,13 @@
               {% endif %}
             </form>
             {% endif %}
+
+            
           </div>
-        </div>
+      </div>
+
+          
+        
       {% endif %}
     {% endfor %}
 

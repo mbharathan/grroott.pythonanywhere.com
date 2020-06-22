@@ -1,0 +1,11 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<h3 class="mb-3" >The user "{{ posts.first.author }}" is followed by</h3>
+
+{% for followers in posts.first.author.profile.followed.all %}
+	<a href=" {% url 'user-posts' followers %}">{{ followers }}</a>
+  	<p></p>
+{% endfor %}
+
+
+{% endblock content %}
