@@ -26,7 +26,19 @@
               {% endif %}
       </form>
       {% endif %}
-      <strong> {{ post.liked.all.count }} Likes</strong>
+      {% if post.liked.all.count == 0  %}
+        <strong> <a href="#">
+        {{ post.liked.all.count }} Like
+        </a></strong>
+      {% elif post.liked.all.count == 1 %}
+        <strong> <a href="{% url 'post-detail-likes' post.id%}">
+        {{ post.liked.all.count }} Like
+        </a></strong>
+      {% else %}
+        <strong> <a href="{% url 'post-detail-likes' post.id%}">
+        {{ post.liked.all.count }} Likes
+        </a></strong>
+      {% endif %}
     </div>
   </article>
 {% endblock content %}

@@ -1,0 +1,9 @@
+{% extends "blog/base.html" %}
+{% block content %}
+
+<h3 class="mb-3" >The post "{{ post.title }}" is liked by</h3>
+  {% for like in post.liked.all %}
+    <a href="{% url 'user-posts' like %}">{{ like }}</a>
+    <p></p>
+  {% endfor %}
+{% endblock content %}
